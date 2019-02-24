@@ -33,10 +33,18 @@ function submitForm(e){
             all.push(str+"");
             all1.push(str1+"");
         });
+        console.log(all);
+        console.log(all1);
+        console.log(all.includes(username)+"  "+all1.includes(password) +"  "+ all.indexOf(username)+"  "+all1.indexOf(password)+"  "+flag);
         if(all.includes(username)&&all1.includes(password) && all.indexOf(username)==all1.indexOf(password) &&flag){
+            flag=false;
             window.alert("you have already registered");
             window.location.href = "main.html";
-            flag=false;
+
+        }
+        else if(all.includes(username)){
+          flag=false;
+          window.alert("username must be unique.");
         }
         else if(flag) {
             flag=false;
