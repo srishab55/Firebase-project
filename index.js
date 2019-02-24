@@ -4,6 +4,7 @@ var usernames=[];
 var passwords=[];
 document.getElementById('registrationForm').addEventListener('submit',submitForm);
 //submit form
+var flag=true;
 function submitForm(e){
 
     e.preventDefault();
@@ -13,7 +14,6 @@ function submitForm(e){
     var pass2=document.getElementById("password2").value;
     var email=document.getElementById("email").value;
     var phno=document.getElementById("phno").value;
-    var flag=true;
     if(pass1==pass2){
       username+="";
       var password=pass1;
@@ -34,20 +34,25 @@ function submitForm(e){
         });
         console.log(all);
         console.log(all1);
-        console.log(all.includes(username)+"  "+all1.includes(password) +"  "+ all.indexOf(username)+"  "+all1.indexOf(password)+"  "+flag);
-        if(all.includes(username)&&all1.includes(password) && all.indexOf(username)==all1.indexOf(password) &&flag){
+        console.log("("+all.includes(username)+")  ("+all1.includes(password) +")  ("+ all1[all.indexOf(username)]+")  ("+password+")  "+flag);
+        if(all.includes(username) && all1.includes(password) && (all1[all.indexOf(username)]+""==password) &&flag){
             flag=false;
+            all=[]
+            all1=[]
             window.alert("you have already registered");
             window.location.href = "main.html";
-
         }
-        else if(all.includes(username)){
+        else if(all.includes(username) &&flag){
           //flag=false;
+          all=[]
+          all1=[]
           window.alert("username must be unique.");
         }
         else if(flag) {
-            flag=false;
-            writeUserData(name,username,pass1,email,phno);
+          all=[]
+          all1=[]
+          flag=false;
+          writeUserData(name,username,pass1,email,phno);
         }
     });
   }
@@ -65,6 +70,7 @@ function writeUserData(name,username,pass1,email,phno) {
     phone_number:phno,
     paid:0
   });
+  flag=true;
   window.alert("user registration successful")
 
 }
