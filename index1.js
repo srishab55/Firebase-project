@@ -27,8 +27,8 @@ function submitForm(e){
           all1.push(str1+"");
       });
       console.log(passwords);
-      if(all.includes(username)&&all1.includes(password)){
-          console.log("Exist already");
+      if(all.includes(username)&&all1.includes(password) && all.indexOf(username)==all1.indexOf(password)){
+          //console.log("Exist already");
           window.location.href = "main.html";
         }
      else if(!flag){
