@@ -13,14 +13,13 @@ function submitForm(e){
     var pass2=document.getElementById("password2").value;
     var email=document.getElementById("email").value;
     var phno=document.getElementById("phno").value;
-    var flag=false;
+    var flag=true;
     if(pass1==pass2){
       username+="";
       var password=pass1;
       password+="";
       console.log("username:"+username+" password:"+password);
       var leadsRef = firebase.database().ref('register');
-      var flag=true;
       leadsRef.on('value', function(snapshot) {
         var all=[];
         var all1=[];
@@ -43,7 +42,7 @@ function submitForm(e){
 
         }
         else if(all.includes(username)){
-          flag=false;
+          //flag=false;
           window.alert("username must be unique.");
         }
         else if(flag) {
