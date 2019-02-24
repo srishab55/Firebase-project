@@ -10,7 +10,7 @@ function submitForm(e){
     var username=document.getElementById("username").value;
     var password=document.getElementById("password").value;
     username+="";
-
+    password+="";
     console.log("username:"+username+" password:"+password);
     var leadsRef = firebase.database().ref('register');
     var flag=false;
