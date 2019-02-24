@@ -18,7 +18,7 @@ function submitForm(e){
       username+="";
       var password=pass1;
       password+="";
-      console.log("username:"+username+" password:"+password);
+      //console.log("username:"+username+" password:"+password);
       var leadsRef = firebase.database().ref('register');
       leadsRef.on('value', function(snapshot) {
         var all=[];
@@ -32,9 +32,9 @@ function submitForm(e){
             all.push(str+"");
             all1.push(str1+"");
         });
-        console.log(all);
-        console.log(all1);
-        console.log("("+all.includes(username)+")  ("+all1.includes(password) +")  ("+ all1[all.indexOf(username)]+")  ("+password+")  "+flag);
+        //console.log(all);
+        //console.log(all1);
+        //console.log("("+all.includes(username)+")  ("+all1.includes(password) +")  ("+ all1[all.indexOf(username)]+")  ("+password+")  "+flag);
         if(all.includes(username) && all1.includes(password) && (all1[all.indexOf(username)]+""==password) &&flag){
             flag=false;
             all=[]
@@ -71,6 +71,7 @@ function writeUserData(name,username,pass1,email,phno) {
     paid:0
   });
   flag=true;
+  window.location.href = "register.html"
   window.alert("user registration successful")
 
 }

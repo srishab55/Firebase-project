@@ -11,9 +11,8 @@ function submitForm(e){
     var password=document.getElementById("password").value;
     username+="";
     password+="";
-    console.log("username:"+username+" password:"+password);
     var leadsRef = firebase.database().ref('register');
-    var flag=false;
+    var flag=true;
     leadsRef.on('value', function(snapshot) {
       var all=[];
       var all1=[];
@@ -27,14 +26,13 @@ function submitForm(e){
           all1.push(str1+"");
       });
       console.log(passwords);
-      if(all.includes(username)&&all1.includes(password) && all.indexOf(username)==all1.indexOf(password)){
-          //console.log("Exist already");
+      if(all.includes(username)&&all1.includes(password) && (all1[all.indexOf(username)]+""==password)){
+        flag=false;
           window.location.href = "main.html";
-        }
-     else if(!flag){
+      }
+     else if(flag){
        window.alert("Please goto registration page");
        window.location.href = "register.html";
     }
-    console.log(1212);
   });
 }
